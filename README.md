@@ -2,19 +2,19 @@
 
 > Minha base de estudos em desenvolvimento de software.
 
-Este repositório reúne todo o meu material de estudo, anotações, exercícios e projetos práticos desenvolvidos durante minha jornada de aprendizado como desenvolvedora Back-end.
+O **Base Studies** é o meu repositório de estudos, criado para centralizar conhecimentos, documentar a evolução do aprendizado e desenvolver uma base sólida em programação, arquitetura de software e boas práticas de desenvolvimento.
 
-O objetivo é centralizar o conhecimento adquirido, documentar a evolução dos estudos e construir uma base sólida sobre programação, arquitetura de software e boas práticas de desenvolvimento.
+Aqui reúno resumos, anotações, exercícios, desafios, projetos práticos e experimentos realizados ao longo da minha jornada como desenvolvedora Back-end.
 
 ---
 
 # 🎯 Objetivos
 
 * Consolidar os fundamentos da programação.
-* Documentar o aprendizado de forma organizada.
+* Organizar e documentar o processo de aprendizagem.
 * Resolver exercícios e desafios práticos.
-* Desenvolver pequenos projetos para fixação.
-* Criar uma base de consulta para estudos futuros.
+* Desenvolver pequenos projetos para fixação dos conteúdos.
+* Criar uma base de conhecimento reutilizável.
 * Evoluir continuamente como desenvolvedora.
 
 ---
@@ -48,11 +48,7 @@ base-studies/
 └── README.md
 ```
 
----
-
-# 📖 Organização dos Estudos
-
-Cada tema possui sua própria estrutura de documentação.
+Cada módulo possui sua própria estrutura de documentação:
 
 ```text
 modulo/
@@ -67,17 +63,73 @@ modulo/
 
 ---
 
-# 🛠️ Metodologia
+# 📖 Metodologia de Estudos
 
-Cada assunto estudado segue o mesmo fluxo:
+Este repositório utiliza uma metodologia baseada em **planejamento**, **prática** e **documentação**, transformando cada conteúdo estudado em conhecimento consolidado e código versionado.
 
-1. 📚 Estudo da teoria
-2. ✍️ Resumo do conteúdo
-3. 💻 Exemplos práticos
-4. 🧪 Exercícios
-5. 🚀 Desafios
-6. 📝 Documentação das descobertas
-7. 🔄 Revisão
+## Fluxo de Estudo
+
+Cada tema segue o mesmo processo:
+
+```text
+Criar uma Issue
+        ↓
+Estudar a teoria
+        ↓
+Produzir exemplos práticos
+        ↓
+Resolver exercícios e desafios
+        ↓
+Documentar o aprendizado
+        ↓
+Realizar o commit das alterações
+        ↓
+Fechar a Issue
+```
+
+---
+
+## 📋 GitHub Project
+
+O gerenciamento dos estudos é realizado através do **GitHub Projects**.
+
+Cada conteúdo é acompanhado desde o planejamento até a conclusão, permitindo visualizar a evolução do roadmap, prioridades, revisões e progresso geral.
+
+---
+
+## 📌 GitHub Issues
+
+Cada **Issue** representa um tópico ou aula de estudo.
+
+Ela funciona como um guia para o aprendizado e contém:
+
+* Objetivos do estudo;
+* Conteúdos a serem aprendidos;
+* Referências (documentação, artigos e vídeos);
+* Exercícios propostos;
+* Checklist de conclusão;
+* Dúvidas e observações;
+* Registro do tempo dedicado ao estudo.
+
+Após concluir todas as atividades, a Issue é encerrada.
+
+---
+
+## 💻 Repositório
+
+Enquanto as **Issues** registram o planejamento dos estudos, o repositório concentra toda a parte prática.
+
+Cada módulo reúne:
+
+* Resumos em Markdown;
+* Exemplos de código;
+* Exercícios resolvidos;
+* Desafios;
+* Anotações pessoais;
+* Projetos práticos;
+* Referências úteis.
+
+Dessa forma, o GitHub Project documenta a evolução dos estudos, enquanto este repositório se torna uma base de conhecimento reutilizável e versionada.
 
 ---
 
@@ -87,7 +139,7 @@ Cada assunto estudado segue o mesmo fluxo:
 
 Estudo completo da linguagem, desde os fundamentos até tópicos avançados.
 
-**Principais assuntos**
+### Principais assuntos
 
 * Fundamentos
 * Estruturas de Controle
@@ -108,15 +160,15 @@ Estudo completo da linguagem, desde os fundamentos até tópicos avançados.
 
 Estudo voltado ao desenvolvimento de software em larga escala.
 
-**Principais assuntos**
+### Principais assuntos
 
 * Arquitetura de Software
 * SOLID
 * Design Patterns
 * Clean Architecture
 * Domain-Driven Design (DDD)
-* Microsserviços
 * APIs REST
+* Microsserviços
 * Mensageria
 * Event-Driven Architecture
 * Escalabilidade
@@ -126,28 +178,30 @@ Estudo voltado ao desenvolvimento de software em larga escala.
 
 ---
 
-# 🎯 Objetivo Final
+# 📈 Acompanhamento
 
-Construir uma base sólida em desenvolvimento Back-end, compreendendo não apenas como escrever código, mas também como projetar sistemas escaláveis, organizados e fáceis de manter.
+O progresso do aprendizado é acompanhado através de:
+
+* 📋 GitHub Projects
+* 📌 GitHub Issues
+* 🎯 Milestones
+* ✅ Checklists
+* 🌱 Commits frequentes
 
 ---
 
-# 📈 Progresso
+# 🚀 Objetivo Final
 
-O acompanhamento do estudo é realizado através de:
+Mais do que armazenar códigos, este repositório representa minha jornada contínua de aprendizado.
 
-* GitHub Projects
-* Issues
-* Milestones
-* Checklists
-* Commits frequentes
+Cada resumo, exercício, projeto e documentação registrada aqui faz parte da construção de uma base sólida em desenvolvimento Back-end e arquitetura de software, servindo tanto como material de consulta quanto como um registro da minha evolução técnica.
 
 ---
 
 # 🤝 Contribuições
 
-Este é um repositório de estudos pessoais. Sugestões, melhorias e discussões são sempre bem-vindas.
+Este é um repositório de estudos pessoais. Sugestões, correções e discussões são sempre bem-vindas.
 
 ---
 
-> *"Aprender é construir conhecimento um commit de cada vez."*
+> *"Aprender é construir conhecimento, um commit de cada vez."*

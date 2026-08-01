@@ -2,9 +2,9 @@
 
 > Minha base de estudos em desenvolvimento de software.
 
-O **Base Studies** é o meu repositório de estudos, criado para centralizar conhecimentos, documentar a evolução do aprendizado e desenvolver uma base sólida em programação, arquitetura de software e boas práticas de desenvolvimento.
+O **Base Studies** é o meu repositório de estudos, criado para centralizar conhecimentos, documentar a evolução do aprendizado e desenvolver uma base sólida em linguagens de programação, bancos de dados, arquitetura de software e boas práticas de desenvolvimento.
 
-Aqui reúno resumos, anotações, exercícios, desafios, projetos práticos e experimentos realizados ao longo da minha jornada como desenvolvedora Back-end.
+Aqui reúno resumos, anotações, exercícios, desafios, projetos práticos e experimentos realizados ao longo da minha jornada na área de desenvolvimento de software.
 
 ---
 
@@ -26,24 +26,35 @@ base-studies/
 │
 ├── php/
 │   ├── fundamentos/
-│   ├── arrays/
-│   ├── strings/
+│   ├── arrays-e-strings/
 │   ├── poo/
-│   ├── banco-de-dados/
+│   ├── composer/
+│   ├── manipulacao-de-arquivos/
 │   ├── php-moderno/
+│   ├── boas-praticas/
 │   ├── testes-unitarios/
-│   └── projetos/
+│   └── projeto-final/
+│
+├── sql/
+│   ├── fundamentos/
+│   ├── consultas/
+│   ├── manipulacao-de-dados/
+│   ├── funcoes/
+│   ├── joins/
+│   ├── modelagem/
+│   ├── performance/
+│   ├── transacoes/
+│   └── projeto-final/
 │
 ├── system-design/
 │   ├── fundamentos/
 │   ├── arquitetura/
-│   ├── solid/
 │   ├── design-patterns/
 │   ├── ddd/
 │   ├── clean-architecture/
 │   ├── microsservicos/
 │   ├── mensageria/
-│   └── projetos/
+│   └── projeto-final/
 │
 └── README.md
 ```
@@ -137,44 +148,64 @@ Dessa forma, o GitHub Project documenta a evolução dos estudos, enquanto este 
 
 ## 🐘 PHP
 
-Estudo completo da linguagem, desde os fundamentos até tópicos avançados.
+Estudo completo da linguagem PHP, desde os fundamentos até o desenvolvimento de aplicações modernas.
 
 ### Principais assuntos
 
 * Fundamentos
-* Estruturas de Controle
-* Funções
-* Arrays
-* Strings
+* Arrays e Strings
 * Programação Orientada a Objetos
-* Composer
-* Banco de Dados
+* Composer e Ecossistema
+* Manipulação de Arquivos
 * PHP Moderno
 * Boas Práticas
 * Testes Unitários
-* Projetos Práticos
+* Projeto Final
+
+---
+
+## 🗄️ SQL
+
+Estudo da linguagem SQL e dos principais conceitos de bancos de dados relacionais.
+
+### Principais assuntos
+
+* Fundamentos
+* Consultas (SELECT)
+* Manipulação de Dados (INSERT, UPDATE e DELETE)
+* Funções
+* GROUP BY e HAVING
+* Joins
+* Subconsultas
+* Modelagem de Dados
+* Índices
+* Performance
+* Transações
+* Views, Procedures e Triggers
+* Projeto Final
 
 ---
 
 ## 🏗️ Projeto e Arquitetura de Sistemas
 
-Estudo voltado ao desenvolvimento de software em larga escala.
+Estudo voltado ao desenvolvimento de software em larga escala, abordando arquitetura, padrões e sistemas distribuídos.
 
 ### Principais assuntos
 
+* Fundamentos de Arquitetura
 * Arquitetura de Software
-* SOLID
+* Padrões Arquiteturais
 * Design Patterns
-* Clean Architecture
 * Domain-Driven Design (DDD)
-* APIs REST
+* Clean Architecture
+* APIs
 * Microsserviços
 * Mensageria
-* Event-Driven Architecture
 * Escalabilidade
+* Performance
 * Observabilidade
 * Segurança
-* Projetos Práticos
+* Projeto Final
 
 ---
 
@@ -194,7 +225,7 @@ O progresso do aprendizado é acompanhado através de:
 
 Mais do que armazenar códigos, este repositório representa minha jornada contínua de aprendizado.
 
-Cada resumo, exercício, projeto e documentação registrada aqui faz parte da construção de uma base sólida em desenvolvimento Back-end e arquitetura de software, servindo tanto como material de consulta quanto como um registro da minha evolução técnica.
+Cada resumo, exercício, projeto e documentação registrada aqui contribui para a construção de uma base sólida em desenvolvimento de software, abrangendo linguagens de programação, bancos de dados, arquitetura de sistemas e boas práticas. Além de servir como material de consulta, este repositório registra minha evolução técnica ao longo do tempo.
 
 ---
 

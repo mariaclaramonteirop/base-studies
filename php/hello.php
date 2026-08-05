@@ -1,4 +1,5 @@
 <?php
 
-$nome = readline('Seu Nome:');
-echo 'hello world, ' . $nome;
+echo 'HELLO WORLD!' . PHP_EOL;
+$nome = readline('Seu Nome: ');
+echo 'Hello, ' . $nome;

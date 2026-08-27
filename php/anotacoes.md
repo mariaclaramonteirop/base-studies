@@ -1,0 +1,18 @@
+## Anotações sobre PHP
+
+
+## POO
+
+- Classe
+
+- Interface
+
+- ABSTRAÇÃO
+- MODELO ANEMICO
+- MODELO - METODOS IMUTAVEIS
+- FINAL
+- ESTATICA
+- SOBRESCRITA
+- SOBRECARGA
+- HERANÇA
+- POLIMORFISMO

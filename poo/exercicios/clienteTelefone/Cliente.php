@@ -2,9 +2,9 @@
 namespace poo\exercicios\clienteTelefone;
 use poo\exercicios\clienteTelefone\Telefone;
 class Cliente{
-    private int $id;
-    private string $nome;
-    private array $telefones;
+    public int $id;
+    public string $nome;
+    public array $telefones;
 
     public function __construct(
         int $id,

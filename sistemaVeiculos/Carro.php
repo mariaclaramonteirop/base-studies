@@ -1,7 +1,6 @@
 <?php
 
 namespace SistemaVeiculos;
-use SistemaVeiculos\Veiculo;
 
 class Carro extends Veiculo{
 

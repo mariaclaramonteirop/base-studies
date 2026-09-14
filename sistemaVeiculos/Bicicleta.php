@@ -1,6 +1,6 @@
 <?php
 namespace SistemaVeiculos;
-use sistemaVeiculos\Veiculo;
+use SistemaVeiculos\Veiculo;
 require_once "Veiculo.php";
 
 class Bicicleta extends Veiculo{

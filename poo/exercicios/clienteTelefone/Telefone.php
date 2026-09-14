@@ -16,7 +16,7 @@ class Telefone{
         $this->validar();
     }
 
-    public function validar(): bool{
+    public function validar(): array{
         $problemas = [];
         if($this->id <= 0){
             $problemas[] = "ID inválido";

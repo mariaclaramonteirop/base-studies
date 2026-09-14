@@ -17,21 +17,23 @@ class Cliente{
         $this->validar();
     }
 
-    public function validar(): bool{
-        if($this->id <= 0){
-            return false;
+    public function validar(): array {
+        $problemas = [];
+        if($this->id <= 0) $problemas[] = "ID inválido";
+
+        if(strlen($this->nome) < 2 || strlen($this->nome) > 100) {
+            $problemas[] = "Nome deve ter entre 2 e 100 caracteres";
         }
-        if(empty($this->nome)){
-            return false;
-        }
-        foreach($this->telefones as $telefone){
-            if(!$telefone instanceof Telefone || !$telefone->validar()){
-                return false;
+
+        foreach($this->telefones as $tel) {
+            $telesProblemas = $tel->validar();
+            if(!empty($telesProblemas)) {
+                $problemas[] = "Telefone inválido: " . implode(", ", $telesProblemas);
             }
         }
-        return true;
-    }
 
+        return $problemas;
+    }
 
     /**
      * Get the value of id

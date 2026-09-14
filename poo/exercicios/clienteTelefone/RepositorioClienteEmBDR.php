@@ -11,6 +11,7 @@ class RepositorioClienteEmBDR implements RepositorioCliente{
     public function __construct(
         private \PDO $pdo
     ){}
+
     public function adicionar(Cliente $cliente): void{
         try{
             $sqlCliente = "INSERT INTO cliente (id, nome) VALUES (:id, :nome)";
@@ -107,4 +108,5 @@ class RepositorioClienteEmBDR implements RepositorioCliente{
             throw new RepositorioException("Erro ao buscar clientes: " . $e->getMessage());
         }
     }
+
 }

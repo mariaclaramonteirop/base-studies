@@ -23,21 +23,14 @@ class Telefone{
         }
         if(empty($this->numero)){
             $problemas[] = "Número inválido";
-            return false;
         }
         if(strlen($this->numero) !== 11){
             $problemas[] = "Número deve ter 11 caracteres";
-            return false;
         }
         if(!is_numeric($this->numero)){
             $problemas[] = "Número deve conter apenas números";
-            return false;
         }
-        // se fosse com REGEX, poderia ser assim:
-        // if(!preg_match('/^\d{11}$/', $this->numero)){
-        //     $problemas[] = "Número deve conter apenas números e ter 11 caracteres";
-        //     return false;
-        return true;
+        return $problemas;  // SEMPRE retorna array
     }
 
 

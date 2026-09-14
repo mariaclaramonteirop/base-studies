@@ -24,7 +24,9 @@ class Cliente{
         if(strlen($this->nome) < 2 || strlen($this->nome) > 100) {
             $problemas[] = "Nome deve ter entre 2 e 100 caracteres";
         }
-
+        if(empty($this->telefones)) {
+            $problemas[] = "Nenhum telefone foi adicionado";
+        }
         foreach($this->telefones as $tel) {
             $telesProblemas = $tel->validar();
             if(!empty($telesProblemas)) {

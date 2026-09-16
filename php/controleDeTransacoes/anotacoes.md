@@ -1,6 +1,6 @@
 # Controle de Transações
 
-##TRANSAÇÃO
+## TRANSAÇÃO
 - Voltar atrás
 - manter a consistência
 ### Quando usar?
@@ -14,7 +14,13 @@
 
 ### Anomalias
 - Atualização
-  -Tratado com ´ON UPDATE CASCADE´ 
+  -Tratado com ON `UPDATE CASCADE` 
 - Exclusão
-  - Tratado com ´ON DELETE RESTRICT´ 
+  - Tratado com `ON DELETE RESTRICT`
+ 
+  ## COMANDOS
+  - `isTransaction()` 
+  - `beginTransaction()` 
+  - `commit()` 
+  - `rollback()` 
   

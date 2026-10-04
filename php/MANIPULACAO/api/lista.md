@@ -159,42 +159,48 @@ Os esquemas abaixo são sugestões independentes para praticar persistência jun
 ### Exercício 1: Usuários
 
 ```sql
-CREATE TABLE api_usuario_01 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_01;
+USE exercicio_api_01;
+
+CREATE TABLE usuario (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
 	email VARCHAR(100) NOT NULL UNIQUE,
 	cidade VARCHAR(80) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_endereco_01 (
+CREATE TABLE endereco (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	usuario_id INT NOT NULL,
 	logradouro VARCHAR(150) NOT NULL,
 	cidade VARCHAR(80) NOT NULL,
-	FOREIGN KEY (usuario_id) REFERENCES api_usuario_01(id) ON DELETE CASCADE
+	FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 ```
 
 ### Exercício 2: Usuário por Identificador
 
 ```sql
-CREATE TABLE api_usuario_02 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_02;
+USE exercicio_api_02;
+
+CREATE TABLE usuario_detalhe (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_perfil_02 (
+CREATE TABLE perfil (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	usuario_id INT NOT NULL,
 	endereco VARCHAR(150),
-	FOREIGN KEY (usuario_id) REFERENCES api_usuario_02(id)
+	FOREIGN KEY (usuario_id) REFERENCES usuario_detalhe(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_telefone_02 (
+CREATE TABLE telefone (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	usuario_id INT NOT NULL,
 	numero VARCHAR(20) NOT NULL,
-	FOREIGN KEY (usuario_id) REFERENCES api_usuario_02(id) ON DELETE CASCADE,
+	FOREIGN KEY (usuario_id) REFERENCES usuario_detalhe(id) ON DELETE CASCADE,
 	UNIQUE (usuario_id, numero)
 ) ENGINE=InnoDB;
 ```
@@ -202,13 +208,16 @@ CREATE TABLE api_telefone_02 (
 ### Exercício 3: Registro de Requisições
 
 ```sql
-CREATE TABLE api_servico_03 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_03;
+USE exercicio_api_03;
+
+CREATE TABLE servico (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(80) NOT NULL UNIQUE,
 	base_url VARCHAR(255) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_requisicao_03 (
+CREATE TABLE requisicao (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	servico_id INT NOT NULL,
 	url VARCHAR(255) NOT NULL,
@@ -216,24 +225,27 @@ CREATE TABLE api_requisicao_03 (
 	status_http SMALLINT NOT NULL,
 	erro VARCHAR(255),
 	realizada_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (servico_id) REFERENCES api_servico_03(id)
+	FOREIGN KEY (servico_id) REFERENCES servico(id)
 ) ENGINE=InnoDB;
 ```
 
 ### Exercício 4: Produtos Criados
 
 ```sql
-CREATE TABLE api_categoria_04 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_04;
+USE exercicio_api_04;
+
+CREATE TABLE categoria (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_fornecedor_04 (
+CREATE TABLE fornecedor (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_produto_04 (
+CREATE TABLE produto (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	categoria_id INT NOT NULL,
 	fornecedor_id INT NOT NULL,
@@ -241,8 +253,8 @@ CREATE TABLE api_produto_04 (
 	preco DECIMAL(10,2) NOT NULL,
 	estoque INT NOT NULL DEFAULT 0,
 	criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (categoria_id) REFERENCES api_categoria_04(id),
-	FOREIGN KEY (fornecedor_id) REFERENCES api_fornecedor_04(id),
+	FOREIGN KEY (categoria_id) REFERENCES categoria(id),
+	FOREIGN KEY (fornecedor_id) REFERENCES fornecedor(id),
 	CHECK (preco >= 0),
 	CHECK (estoque >= 0)
 ) ENGINE=InnoDB;
@@ -251,31 +263,34 @@ CREATE TABLE api_produto_04 (
 ### Exercício 5: Páginas de Resultados
 
 ```sql
-CREATE TABLE api_cliente_05 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_05;
+USE exercicio_api_05;
+
+CREATE TABLE cliente (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_produto_05 (
+CREATE TABLE produto_pedido (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
 	preco DECIMAL(10,2) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_pedido_05 (
+CREATE TABLE pedido (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	cliente_id INT NOT NULL,
 	criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (cliente_id) REFERENCES api_cliente_05(id)
+	FOREIGN KEY (cliente_id) REFERENCES cliente(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_item_pedido_05 (
+CREATE TABLE item_pedido (
 	pedido_id INT NOT NULL,
 	produto_id INT NOT NULL,
 	quantidade INT NOT NULL,
 	PRIMARY KEY (pedido_id, produto_id),
-	FOREIGN KEY (pedido_id) REFERENCES api_pedido_05(id) ON DELETE CASCADE,
-	FOREIGN KEY (produto_id) REFERENCES api_produto_05(id),
+	FOREIGN KEY (pedido_id) REFERENCES pedido(id) ON DELETE CASCADE,
+	FOREIGN KEY (produto_id) REFERENCES produto_pedido(id),
 	CHECK (quantidade > 0)
 ) ENGINE=InnoDB;
 ```
@@ -283,20 +298,23 @@ CREATE TABLE api_item_pedido_05 (
 ### Exercício 6: Cache
 
 ```sql
-CREATE TABLE api_categoria_06 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_06;
+USE exercicio_api_06;
+
+CREATE TABLE categoria_catalogo (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_produto_06 (
+CREATE TABLE produto_catalogo (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	categoria_id INT NOT NULL,
 	nome VARCHAR(100) NOT NULL,
 	preco DECIMAL(10,2) NOT NULL,
-	FOREIGN KEY (categoria_id) REFERENCES api_categoria_06(id)
+	FOREIGN KEY (categoria_id) REFERENCES categoria_catalogo(id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_cache_06 (
+CREATE TABLE cache (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	recurso VARCHAR(150) NOT NULL UNIQUE,
 	resposta_json JSON NOT NULL,
@@ -308,17 +326,20 @@ CREATE TABLE api_cache_06 (
 ### Exercício 7: Atualização de Produtos
 
 ```sql
-CREATE TABLE api_categoria_07 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_07;
+USE exercicio_api_07;
+
+CREATE TABLE categoria_produto (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_fornecedor_07 (
+CREATE TABLE fornecedor_produto (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_produto_07 (
+CREATE TABLE produto_atualizavel (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	categoria_id INT NOT NULL,
 	fornecedor_id INT NOT NULL,
@@ -326,8 +347,8 @@ CREATE TABLE api_produto_07 (
 	preco DECIMAL(10,2) NOT NULL,
 	estoque INT NOT NULL,
 	atualizado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (categoria_id) REFERENCES api_categoria_07(id),
-	FOREIGN KEY (fornecedor_id) REFERENCES api_fornecedor_07(id),
+	FOREIGN KEY (categoria_id) REFERENCES categoria_produto(id),
+	FOREIGN KEY (fornecedor_id) REFERENCES fornecedor_produto(id),
 	CHECK (preco >= 0),
 	CHECK (estoque >= 0)
 ) ENGINE=InnoDB;
@@ -336,43 +357,49 @@ CREATE TABLE api_produto_07 (
 ### Exercício 8: Alteração Parcial
 
 ```sql
-CREATE TABLE api_especie_08 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_08;
+USE exercicio_api_08;
+
+CREATE TABLE especie (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(50) NOT NULL UNIQUE
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_adotante_08 (
+CREATE TABLE adotante (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
 	telefone VARCHAR(20)
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_animal_08 (
+CREATE TABLE animal (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	especie_id INT NOT NULL,
 	adotante_id INT,
 	nome VARCHAR(80) NOT NULL,
 	situacao VARCHAR(20) NOT NULL,
-	FOREIGN KEY (especie_id) REFERENCES api_especie_08(id),
-	FOREIGN KEY (adotante_id) REFERENCES api_adotante_08(id),
+	FOREIGN KEY (especie_id) REFERENCES especie(id),
+	FOREIGN KEY (adotante_id) REFERENCES adotante(id),
 	CHECK (situacao IN ('disponivel', 'adotado'))
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_alteracao_08 (
+CREATE TABLE alteracao_animal (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	animal_id INT NOT NULL,
 	campo VARCHAR(40) NOT NULL,
 	valor_anterior VARCHAR(255),
 	valor_novo VARCHAR(255) NOT NULL,
 	alterado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	FOREIGN KEY (animal_id) REFERENCES api_animal_08(id) ON DELETE CASCADE
+	FOREIGN KEY (animal_id) REFERENCES animal(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 ```
 
 ### Exercício 9: Exclusões
 
 ```sql
-CREATE TABLE api_exclusao_09 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_09;
+USE exercicio_api_09;
+
+CREATE TABLE exclusao (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	recurso VARCHAR(80) NOT NULL,
 	recurso_id INT NOT NULL,
@@ -384,7 +411,10 @@ CREATE TABLE api_exclusao_09 (
 ### Exercício 10: Documentos HTML
 
 ```sql
-CREATE TABLE api_documento_10 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_10;
+USE exercicio_api_10;
+
+CREATE TABLE documento (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	url VARCHAR(255) NOT NULL UNIQUE,
 	titulo VARCHAR(200),
@@ -396,7 +426,10 @@ CREATE TABLE api_documento_10 (
 ### Exercício 11: Formatos de Resposta
 
 ```sql
-CREATE TABLE api_formato_11 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_11;
+USE exercicio_api_11;
+
+CREATE TABLE formato_resposta (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	recurso VARCHAR(100) NOT NULL,
 	formato VARCHAR(40) NOT NULL,
@@ -409,7 +442,10 @@ CREATE TABLE api_formato_11 (
 ### Exercício 12: Livros XML
 
 ```sql
-CREATE TABLE api_livro_12 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_12;
+USE exercicio_api_12;
+
+CREATE TABLE livro (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	titulo VARCHAR(150) NOT NULL,
 	autor VARCHAR(100) NOT NULL,
@@ -421,7 +457,10 @@ CREATE TABLE api_livro_12 (
 ### Exercício 13: Tokens de Acesso
 
 ```sql
-CREATE TABLE api_token_13 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_13;
+USE exercicio_api_13;
+
+CREATE TABLE token (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	identificador VARCHAR(80) NOT NULL,
 	token_hash CHAR(64) NOT NULL UNIQUE,
@@ -433,26 +472,32 @@ CREATE TABLE api_token_13 (
 ### Exercício 14: Login
 
 ```sql
-CREATE TABLE api_conta_14 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_14;
+USE exercicio_api_14;
+
+CREATE TABLE conta (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	email VARCHAR(100) NOT NULL UNIQUE,
 	hash_senha CHAR(64) NOT NULL,
 	ativo TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_token_14 (
+CREATE TABLE token_conta (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	conta_id INT NOT NULL,
 	token_hash CHAR(64) NOT NULL UNIQUE,
 	expira_em DATETIME NOT NULL,
-	FOREIGN KEY (conta_id) REFERENCES api_conta_14(id) ON DELETE CASCADE
+	FOREIGN KEY (conta_id) REFERENCES conta(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 ```
 
 ### Exercício 15: Uploads
 
 ```sql
-CREATE TABLE api_upload_15 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_15;
+USE exercicio_api_15;
+
+CREATE TABLE upload (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome_original VARCHAR(255) NOT NULL,
 	nome_armazenado VARCHAR(255) NOT NULL UNIQUE,
@@ -466,7 +511,10 @@ CREATE TABLE api_upload_15 (
 ### Exercício 16: Webhooks
 
 ```sql
-CREATE TABLE api_evento_16 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_16;
+USE exercicio_api_16;
+
+CREATE TABLE evento (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	tipo VARCHAR(80) NOT NULL,
 	id_externo VARCHAR(100) NOT NULL,
@@ -480,7 +528,10 @@ CREATE TABLE api_evento_16 (
 ### Exercício 17: Controle de Rate Limit
 
 ```sql
-CREATE TABLE api_limite_17 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_17;
+USE exercicio_api_17;
+
+CREATE TABLE limite_requisicao (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	identificador VARCHAR(100) NOT NULL,
 	janela_inicio DATETIME NOT NULL,
@@ -493,20 +544,23 @@ CREATE TABLE api_limite_17 (
 ### Exercício 18: Exportação de Pedidos
 
 ```sql
-CREATE TABLE api_pedido_18 (
+CREATE DATABASE IF NOT EXISTS exercicio_api_18;
+USE exercicio_api_18;
+
+CREATE TABLE pedido_exportacao (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	cliente VARCHAR(100) NOT NULL,
 	status VARCHAR(30) NOT NULL,
 	criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
-CREATE TABLE api_item_pedido_18 (
+CREATE TABLE item_pedido_exportacao (
 	pedido_id INT NOT NULL,
 	produto VARCHAR(100) NOT NULL,
 	quantidade INT NOT NULL,
 	preco DECIMAL(10,2) NOT NULL,
 	PRIMARY KEY (pedido_id, produto),
-	FOREIGN KEY (pedido_id) REFERENCES api_pedido_18(id) ON DELETE CASCADE,
+	FOREIGN KEY (pedido_id) REFERENCES pedido_exportacao(id) ON DELETE CASCADE,
 	CHECK (quantidade > 0),
 	CHECK (preco >= 0)
 ) ENGINE=InnoDB;
@@ -546,6 +600,9 @@ Regras: `codigo` deve seguir o padrão `AA-99.aa`, `cnpj` e `telefone` devem con
 **SQL inicial:**
 
 ```sql
+CREATE DATABASE IF NOT EXISTS exercicio_api_19;
+USE exercicio_api_19;
+
 CREATE TABLE fornecedor (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	codigo CHAR(8) NOT NULL UNIQUE,
@@ -582,6 +639,9 @@ O token deve ser validado por um serviço de autorização ou por uma tabela pr�
 **SQL inicial:**
 
 ```sql
+CREATE DATABASE IF NOT EXISTS exercicio_api_20;
+USE exercicio_api_20;
+
 CREATE TABLE usuario (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
@@ -642,6 +702,9 @@ Valide o JSON, a existência do cliente e dos produtos, quantidades positivas e 
 **SQL inicial:**
 
 ```sql
+CREATE DATABASE IF NOT EXISTS exercicio_api_21;
+USE exercicio_api_21;
+
 CREATE TABLE cliente (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
@@ -697,6 +760,9 @@ Implemente `POST /api/produtos`, recebendo os dados do produto, fornecedor e sua
 **SQL inicial:**
 
 ```sql
+CREATE DATABASE IF NOT EXISTS exercicio_api_22;
+USE exercicio_api_22;
+
 CREATE TABLE fornecedor_produto (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL
@@ -739,6 +805,9 @@ Considere as tabelas `rota`, `metodo` e `permissao_origem`. Para os recursos dos
 **SQL inicial:**
 
 ```sql
+CREATE DATABASE IF NOT EXISTS exercicio_api_23;
+USE exercicio_api_23;
+
 CREATE TABLE rota (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	caminho VARCHAR(150) NOT NULL UNIQUE
@@ -782,6 +851,9 @@ O endpoint deve aceitar os parâmetros opcionais `inicio`, `fim` e `categoria`, 
 **SQL inicial:**
 
 ```sql
+CREATE DATABASE IF NOT EXISTS exercicio_api_24;
+USE exercicio_api_24;
+
 CREATE TABLE usuario_relatorio (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,

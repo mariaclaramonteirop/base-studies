@@ -186,22 +186,37 @@ CREATE TABLE api_usuario_02 (
 CREATE TABLE api_perfil_02 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	usuario_id INT NOT NULL,
-	telefone VARCHAR(20),
 	endereco VARCHAR(150),
 	FOREIGN KEY (usuario_id) REFERENCES api_usuario_02(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE api_telefone_02 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	usuario_id INT NOT NULL,
+	numero VARCHAR(20) NOT NULL,
+	FOREIGN KEY (usuario_id) REFERENCES api_usuario_02(id) ON DELETE CASCADE,
+	UNIQUE (usuario_id, numero)
 ) ENGINE=InnoDB;
 ```
 
 ### Exercício 3: Registro de Requisições
 
 ```sql
+CREATE TABLE api_servico_03 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(80) NOT NULL UNIQUE,
+	base_url VARCHAR(255) NOT NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE api_requisicao_03 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
+	servico_id INT NOT NULL,
 	url VARCHAR(255) NOT NULL,
 	metodo VARCHAR(10) NOT NULL,
 	status_http SMALLINT NOT NULL,
 	erro VARCHAR(255),
-	realizada_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+	realizada_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (servico_id) REFERENCES api_servico_03(id)
 ) ENGINE=InnoDB;
 ```
 
@@ -236,23 +251,54 @@ CREATE TABLE api_produto_04 (
 ### Exercício 5: Páginas de Resultados
 
 ```sql
-CREATE TABLE api_resultado_05 (
+CREATE TABLE api_cliente_05 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	recurso VARCHAR(100) NOT NULL,
-	pagina INT NOT NULL,
-	item_externo_id VARCHAR(80) NOT NULL,
-	dados_json JSON NOT NULL,
-	UNIQUE (recurso, item_externo_id),
-	CHECK (pagina > 0)
+	nome VARCHAR(100) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE api_produto_05 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	preco DECIMAL(10,2) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE api_pedido_05 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	cliente_id INT NOT NULL,
+	criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (cliente_id) REFERENCES api_cliente_05(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE api_item_pedido_05 (
+	pedido_id INT NOT NULL,
+	produto_id INT NOT NULL,
+	quantidade INT NOT NULL,
+	PRIMARY KEY (pedido_id, produto_id),
+	FOREIGN KEY (pedido_id) REFERENCES api_pedido_05(id) ON DELETE CASCADE,
+	FOREIGN KEY (produto_id) REFERENCES api_produto_05(id),
+	CHECK (quantidade > 0)
 ) ENGINE=InnoDB;
 ```
 
 ### Exercício 6: Cache
 
 ```sql
+CREATE TABLE api_categoria_06 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+CREATE TABLE api_produto_06 (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	categoria_id INT NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	preco DECIMAL(10,2) NOT NULL,
+	FOREIGN KEY (categoria_id) REFERENCES api_categoria_06(id)
+) ENGINE=InnoDB;
+
 CREATE TABLE api_cache_06 (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-	chave VARCHAR(150) NOT NULL UNIQUE,
+	recurso VARCHAR(150) NOT NULL UNIQUE,
 	resposta_json JSON NOT NULL,
 	criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	expira_em DATETIME NOT NULL

@@ -93,3 +93,63 @@ $k = 2;
 ```
 
 * **Objetivo:** Retornar `[5, 6, 1, 2, 3, 4]`. Considere também os casos em que `k` é maior que o tamanho do array ou o array está vazio.
+
+## Lista 2: Exercícios Abstratos e de Domínio
+
+Nesta seção, use arrays para representar objetos, estados e regras de diferentes domínios. Procure separar os dados das funções que aplicam as regras.
+
+### 11. Cadastro de Veículos
+
+Represente carros, motos e caminhões em um array de veículos. Cada veículo deve possuir marca, modelo, ano, preço e situação (`disponivel` ou `vendido`).
+
+* **Objetivo:** Criar funções para filtrar por situação, encontrar o veículo mais caro e calcular o valor total dos veículos disponíveis.
+
+### 12. Corrida de Carros
+
+Dado um array de pilotos e outro com os tempos obtidos em várias voltas, calcule o tempo total e a volta mais rápida de cada piloto.
+
+```php
+$voltas = [
+    'Ana' => [72.4, 70.8, 71.6],
+    'Bruno' => [69.9, 73.2, 70.5],
+    'Carla' => [71.0, 70.2, 70.7]
+];
+```
+
+* **Objetivo:** Criar um ranking pelo menor tempo total e informar o vencedor.
+
+### 13. Abrigo de Animais
+
+Modele animais de um abrigo com nome, espécie, idade, porte e situação de adoção. Crie operações para cadastrar, buscar por espécie e listar apenas animais disponíveis.
+
+* **Objetivo:** Impedir nomes vazios, aceitar somente espécies cadastradas e contar quantos animais de cada espécie estão disponíveis.
+
+### 14. Alimentação dos Animais
+
+Dado um array de animais e suas necessidades diárias de ração, registre as porções fornecidas durante a semana.
+
+* **Objetivo:** Calcular o total consumido por animal, apontar animais que receberam menos ração que o necessário e gerar um resumo por espécie.
+
+### 15. Inventário de um Jogo
+
+Represente o inventário de um personagem com itens, quantidades, peso e valor. O personagem possui um limite máximo de peso.
+
+* **Objetivo:** Adicionar e remover itens, impedir que o peso máximo seja ultrapassado e calcular o valor total do inventário.
+
+### 16. Campeonato de Jogos
+
+Dado um array de equipes e suas partidas, atualize a tabela de classificação conforme o resultado de cada jogo. Vitória vale 3 pontos, empate vale 1 e derrota vale 0.
+
+* **Objetivo:** Calcular pontos, vitórias, empates, derrotas e saldo de gols, ordenando a tabela pelos critérios definidos.
+
+### 17. Tabuleiro de Xadrez
+
+Represente um tabuleiro de xadrez como uma matriz `8 x 8`. Cada peça deve possuir cor, tipo e posição.
+
+* **Objetivo:** Criar funções para posicionar e remover peças, verificar se uma casa está ocupada e listar todas as peças de uma determinada cor.
+
+### 18. Validação de Movimento no Xadrez
+
+Usando o tabuleiro do exercício anterior, valide movimentos de peão, torre, bispo, cavalo, dama e rei. Considere os limites do tabuleiro, o caminho livre das peças que atravessam casas e a captura de peças adversárias.
+
+* **Objetivo:** Retornar um resultado estruturado indicando se o movimento é válido e o motivo da rejeição quando não for. Não é necessário implementar xeque, roque ou promoção nesta etapa.

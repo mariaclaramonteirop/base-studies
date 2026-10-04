@@ -77,3 +77,27 @@ function equacaoQuadraticaPeloDominio($dominio){
 
     return $imagem;
 }
+
+function faixasDeIdades($idades){
+    $menores = [];
+    $maiores = [];
+    $idadesNovos = [];
+
+    foreach($idades as $i){
+
+        if($i >= 0 && $i < 18){
+            $menores[] = $i;
+        }else if ($i >= 18) {
+            $maiores[] = $i;
+        }else {
+            echo "Idade invalida encontrada: " . $i ;
+        }
+
+    }
+        $idadesNovos = [
+            "maiores" => $maiores,
+            "menores" => $menores
+        ];
+
+    return $idadesNovos;
+}

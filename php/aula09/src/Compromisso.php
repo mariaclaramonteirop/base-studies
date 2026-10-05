@@ -30,7 +30,7 @@ class Compromisso{
             throw new RuntimeException('Data incorreta');
         }
         $partesHora = explode(':', $this->hora);
-        if(count($partesHora) != 2){
+        if(count($partesHora) < 2 || count($partesHora) > 3){
             throw new RuntimeException('Horario está incorreto');
         }
         [$hora, $minuto] = $partesHora;
